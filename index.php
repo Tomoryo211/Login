@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,6 +10,10 @@
     <title>ログインページ</title>
 </head>
 <body>
-    
+    <main>
+        <form action="">
+
+        </form>
+    </main>
 </body>
 </html>
