@@ -11,9 +11,19 @@
 </head>
 <body>
     <main>
-        <form action="">
+        <div>
+            <h1>新規登録</h1>
+            <form action=""  method="P COST">
+                <label>電話番号またはメールアドレス</label>
+                <input type="text" name="email" required>
 
-        </form>
+                <label>パスワード</label>
+                <input type="text" name="password" required>
+
+                <a href="#">パスワードを忘れた方はこちら</a>
+                <button type="submit">ログイン</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>
