@@ -1,0 +1,7 @@
+
+
+CREATE TABLE Login(
+    id INT AUTO_INCRMENT PRIMARY  KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) 
+)
