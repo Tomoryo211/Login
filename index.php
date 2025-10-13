@@ -1,6 +1,10 @@
 <?php
 
 require_once __DIR__ . "/config.php";
+// DB接続
+$db = new PDO(DB_DSN,DB_USER,DB_PASS);
+
+
 
 ?>
 <!DOCTYPE html>

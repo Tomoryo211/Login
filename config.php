@@ -10,5 +10,4 @@ const DB_CHARSET = "utf8mb4";
 const DB_DSN = DB_DRIVER . ":dbname=" . DB_NAME . ";host=" . DB_HOST . ";charaset=" . DB_CHARSET;
 
 const TB_LOGIN = "Login";
-const TB_WORK = "app1_WORKS";
 ?>
