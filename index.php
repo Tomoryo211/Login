@@ -1,19 +1,17 @@
 <?php
 
 require_once __DIR__ . "/config.php";
-// DB接続
-try{
-    $db = new PDO(DB_DSN,DB_USER,DB_PASS);
-}catch(PDOException $e){
-    die("データーベース接続失敗" . $e -> getMessage());
-}
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+$username = $_POST['username'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+$db = new PDO(DB_DSN,DB_USER, DB_PASS);
+$stmt = $pdo -> prepare('INSERT INTO web_users')
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
