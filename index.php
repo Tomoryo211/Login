@@ -5,7 +5,7 @@ require_once __DIR__ . "/config.php";
 $db = new PDO(DB_DSN,DB_USER,DB_PASS);
 $password = password_hash("ECC2240110",PASSWORD_DEFAULT);
 
-
+$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 
 ?>
 <!DOCTYPE html>
