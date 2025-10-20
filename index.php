@@ -2,8 +2,11 @@
 
 require_once __DIR__ . "/config.php";
 // DB接続
-$db = new PDO(DB_DSN,DB_USER,DB_PASS);
-$password = password_hash("ECC2240110",PASSWORD_DEFAULT);
+try{
+    $db = new PDO(DB_DSN,DB_USER,DB_PASS);
+}catch(PDOException $e){
+    die("データーベース接続失敗" . $e -> getMessage());
+}
 
 $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
 
@@ -19,12 +22,12 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     <main>
         <div>
             <h1>新規登録</h1>
-            <form action=""  method="P COST">
+            <form action=""  method="POST">
                 <label>電話番号またはメールアドレス</label>
                 <input type="text" name="email" required>
 
                 <label>パスワード</label>
-                <input type="text" name="password" required>
+                <input type="password" name="password" required>
 
                 <a href="#">パスワードを忘れた方はこちら</a>
                 <button type="submit">ログイン</button>
