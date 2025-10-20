@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["user_id"])){
-    header("Location: login.php");
+    header("Location: Login.php");
     exit;
 }
 ?>
@@ -15,7 +15,7 @@ if(!isset($_SESSION["user_id"])){
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
     <div class="bg-white p-10 rounded-xl shadow-lg text-center">
         <h1 class="text-2xl font-bold mb-4">ようこそ、<?php echo htmlspecialchars($_SESSION["email"]); ?> さん！</h1>
-        <a href="logout.php" class="text-blue-500 hover:underline">ログアウト</a>
+        <a href="Logout.php" class="text-blue-500 hover:underline">ログアウト</a>
     </div>
 </body>
 </html>

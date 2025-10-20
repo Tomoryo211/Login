@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST");{
     if($user && password_verify($pass, $user["password"])){
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["email"] = $user["email"];
-        header("Location: dashboard.php");
+        header("Location: Loginrear.php");
         exit;
     }else{
         echo "メールアドレスまたはパスワードが間違っています。";

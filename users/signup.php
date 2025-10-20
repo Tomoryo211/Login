@@ -15,6 +15,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $stmt = $db->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
     $stmt->execute([$email, $pass]);
 
-    echo "登録完了！<a href='login.php'>ログインページへ</a>";
+    echo "登録完了！<a href='Login.php'>ログインページへ</a>";
 }
 ?>
