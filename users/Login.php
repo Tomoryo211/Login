@@ -14,17 +14,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST");{
     $email = $_POST["email"];
     $pass = $_POST["password"];
 
-    $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt = $db->prepare("SELECT * FROM TB_LOGIN WHERE email = ?");
     $stmt->execute([$email]); 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($user && password_verify($pass, $user["password"])){
-        $_SESSION["user_id"] = $user["id"];
-        $_SESSION["email"] = $user["email"];
-        header("Location: Loginrear.php");
-        exit;
+    if($user && password_verify($password, $user["password"])){
+        $_SESSION["user"] = $user["email"];
+        echo"<p>ようこそ" . htmlspecialchars($user["email"]) . "さん</p>";
     }else{
-        echo "メールアドレスまたはパスワードが間違っています。";
+        echo "<p>メールアドレスまたはパスワードが間違っています。</p>";
     }
 }
 ?>
