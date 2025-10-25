@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST");{
     $pass = $_POST["password"];
 
     $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt -> execute(["email"]);
+    $stmt->execute([$email]); 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($user && password_verify($pass, $user["password"])){
