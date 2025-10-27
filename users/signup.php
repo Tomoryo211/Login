@@ -1,45 +1,79 @@
 <?php
-
 require_once __DIR__ . "/../config.php";
 
-try{
-    $db = new PDO (DB_DSN,DB_USER,DB_PASS);
-}catch(PDOException $e){
-    die("データベース接続:" . $e->getMessage());
+try {
+    $db = new PDO(DB_DSN, DB_USER, DB_PASS, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (PDOException $e) {
+    die("DB接続失敗: " . $e->getMessage());
 }
 
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-    $email = $_POST["email"];
-    $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST["email"] ?? '';
+    $pass = $_POST["password"] ?? '';
 
-    $stmt = $db->prepare("INSERT INTO TB_LOGIN  (email, password) VALUES (?, ?)");
-    $stmt->execute([$email, $pass]);
+    if ($email === "" || $pass === "") {
+        echo "すべての項目を入力してください。";
+    } else {
+        // パスワードをハッシュ化
+        $hashed = password_hash($pass, PASSWORD_DEFAULT);
 
-    echo "登録完了！<a href='Login.php'>ログインページへ</a>";
+        $stmt = $db->prepare("INSERT INTO " . TB_USER . " (email, password) VALUES (?, ?)");
+        $stmt->execute([$email, $hashed]);
+
+        echo "<p>登録が完了しました！<a href='Login.php'>ログインへ</a></p>";
+    }
 }
 ?>
+
+<!-- デザイン付きフォーム -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新規登録</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>新規登録</title>
+<style>
+body {
+    font-family: "Yu Gothic", sans-serif;
+    background: linear-gradient(135deg, #eef2f3, #8e9eab);
+    text-align: center;
+    padding-top: 80px;
+}
+form {
+    display: inline-block;
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+input {
+    display: block;
+    width: 260px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #357ABD;
+}
+</style>
 </head>
-<body class="flex justify-center items-center h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h1 class="text-2xl font-bold mb-6 text-center">新規登録</h1>
-            <form action="" method="POST" class="space-y-4">
-                <div>
-                    <label class="block text-gray-700">メールアドレス</label>
-                    <input type="email" name="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
-                </div>
-                <div>
-                    <label class="block text-gray-700">パスワード</label>
-                    <input type="password" name="password" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
-                </div>
-                <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition">登録</button>
-            </form>
-    </div>
+<body>
+    <h1>ユーザー登録</h1>
+    <form method="post">
+        <input type="email" name="email" placeholder="メールアドレス" required>
+        <input type="password" name="password" placeholder="パスワード" required>
+        <button type="submit">登録する</button>
+    </form>
 </body>
 </html>

@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインページ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<style>
+body {
+    font-family: "Yu Gothic", sans-serif;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    text-align: center;
+    padding-top: 80px;
+}
+form {
+    display: inline-block;
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+input {
+    display: block;
+    width: 260px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #357ABD;
+}
+</style>
 </head>
-<body class="flex justify-center items-center h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h1 class="text-2xl font-bold mb-6 text-center">ログイン</h1>
-            <form action="Login.php" method="POST" class="space-y-4">
-                <div>
-                    <label class="block text-gray-700">メールアドレス</label>
-                    <input type="email" name="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
-                </div>
-                <div>
-                    <label class="block text-gray-700">パスワード</label>
-                    <input type="password" name="password" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
-                </div>
-                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">ログイン</button>
-            </form>
-        <p class="text-center text-sm mt-4">アカウントをお持ちでない方は
-            <a href="signup.php" class="text-blue-500 hover:underline">新規登録</a>
-        </p>
-    </div>
+<body>
+<h1>ログインページ</h1>
+<form action="Loginrear.php" method="POST">
+    <input type="email" name="email" placeholder="メールアドレス" required><br>
+    <input type="password" name="password" placeholder="パスワード" required><br>
+    <button type="submit">ログイン</button>
+</form>
+<p>アカウントがない場合は <a href="signup.php">登録</a></p>
 </body>
 </html>
